@@ -266,3 +266,11 @@ p {
 #header .header-content {
   z-index: 2;
 }
+
+/* articles */
+
+#main-articles .articles-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid: 1rem;
+}
