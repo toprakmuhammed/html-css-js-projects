@@ -1,5 +1,21 @@
-$color: red;
-
-body {
-  background-color: $color;
+:root {
+  --font-head: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Inter,
+    "Noto Sans", Arial, sans-serif;
+  --font-body: Inter, system-ui, -apple-system, "Segoe UI", "Noto Sans", Arial,
+    sans-serif;
+  --font-mono: "JetBrains Mono", "Roboto Mono", ui-monospace, SFMono-Regular,
+    Menlo, Consolas, monospace;
 }
+
+$font-head: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Inter,
+  "Noto Sans", Arial, sans-serif;
+$font-body: Inter, system-ui, -apple-system, "Segoe UI", "Noto Sans", Arial,
+  sans-serif;
+$font-mono: "JetBrains Mono", "Roboto Mono", ui-monospace, SFMono-Regular, Menlo,
+  Consolas, monospace;
+
+$max-width: 1200px;
+$primary-color: #ef6d6d;
+$light-color: #f4f4f4;
+$medium-color: #ccc;
+$dark-color: #333;
