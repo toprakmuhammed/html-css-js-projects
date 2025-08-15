@@ -35,16 +35,21 @@
             <h2 class="section-title">Contact Me</h2>
             <div class="border-bottom"></div>
             <p class="lead">Lorem ipsum dolor sit amet.</p>
-            <form>
+            <form 
+                data-netlify="true"
+                data-netlify-recaptcha="true"
+                method="POST"
+                
+                >
                 <div class="form-fields">
                     <input type="text" class="name input" name="fullname" id="fullname" placeholder="Name">
                     <input type="text" class="subject input" name="subject"  placeholder="Subject" id="subject">
                     <input type="email" class="email input" name="email" id="email" placeholder="Email">
                     <input type="tel" class="phone input" name="phone" id="phone" placeholder="Phone">
                     <textarea name="message input" class="message" id="message" placeholder="Enter Message"></textarea>
+                    <div data-netlify-recaptcha="true"></div>
                     <button type="submit" class="btn-dark">Submit</button>
                 </div>
-
             </form>
         </div>
     </section>
