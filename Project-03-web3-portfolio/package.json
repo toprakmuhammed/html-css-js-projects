@@ -1,13 +1,16 @@
 {
   "name": "sass-project",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "sass --watch --style=compressed scss:public/css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "lightbox2": "^2.11.3",
+    "owl.carousel": "^2.3.4"
+  }
 }
