@@ -1,9 +1,10 @@
 .navbar {
-  background: #085e7d !important;
+  /* background: #085e7d !important; */
+  background: #575fcf !important;
 }
 
 .bg-dark {
-  background: #085e7d !important;
+  background: #575fcf !important;
 }
 
 .card-img-top,
