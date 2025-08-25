@@ -1,5 +1,8 @@
 const shoppingList = document.querySelector(".shopping-list");
+const shoppingForm = document.querySelector(".shopping-form");
+
 loadItems();
+shoppingForm.addEventListener("submit", handleFormSubmit);
 
 function loadItems() {
   const items = [
@@ -15,6 +18,36 @@ function loadItems() {
     const li = createListItem(item);
     shoppingList.appendChild(li);
   }
+}
+
+function addItem(input) {
+  const id = generateId();
+  console.log(id);
+  const newItem = createListItem({
+    id: generateId(),
+    name: input.value,
+    completed: false,
+  });
+
+  shoppingList.appendChild(newItem);
+
+  input.value = "";
+}
+
+function generateId() {
+  return Date.now().toString();
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault(); //sayfa yenilenmez.
+  const input = document.getElementById("item_name");
+
+  if (input.value.trim().length === 0) {
+    alert("yeni değer giriniz");
+    return;
+  }
+
+  addItem(input);
 }
 
 function createListItem(item) {
