@@ -50,12 +50,18 @@ function handleFormSubmit(e) {
   addItem(input);
 }
 
+function toggleCompleted(e) {
+  const li = e.target.parentElement;
+  li.toggleAttribute("item-completed", e.target.checked);
+}
+
 function createListItem(item) {
   //checkbox
   const input = document.createElement("input");
   input.type = "checkbox";
   input.classList.add("form-check-input");
   input.checked = item.completed;
+  input.addEventListener("change", toggleCompleted);
 
   //item
   const div = document.createElement("div");
@@ -70,6 +76,7 @@ function createListItem(item) {
 
   const li = document.createElement("li");
   li.className = "border rounded p-3 mb-1";
+  li.toggleAttribute("item-completed", item.completed);
 
   li.appendChild(input);
   li.appendChild(div);
