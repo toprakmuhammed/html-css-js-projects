@@ -17,6 +17,7 @@
 .shopping-list li .delete-icon {
   transform: scale(0);
   transition: transform 200ms;
+  font-size: 30px !important;
 }
 
 .shopping-list li:hover .delete-icon {

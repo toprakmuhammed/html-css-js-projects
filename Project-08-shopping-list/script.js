@@ -1,8 +1,10 @@
 const shoppingList = document.querySelector(".shopping-list");
 const shoppingForm = document.querySelector(".shopping-form");
 
-loadItems();
-shoppingForm.addEventListener("submit", handleFormSubmit);
+document.addEventListener("DOMContentLoaded", function () {
+  loadItems();
+  shoppingForm.addEventListener("submit", handleFormSubmit);
+});
 
 function loadItems() {
   const items = [
@@ -71,11 +73,12 @@ function createListItem(item) {
   //delete icon
   const deleteIcon = document.createElement("i");
   deleteIcon.className = "fs-3 bi bi-x text-danger delete-icon";
+  deleteIcon.addEventListener("click", removeItem);
 
   //li
 
   const li = document.createElement("li");
-  li.className = "border rounded p-3 mb-1";
+  li.className = "border rounded p-2 mb-1";
   li.toggleAttribute("item-completed", item.completed);
 
   li.appendChild(input);
@@ -83,4 +86,9 @@ function createListItem(item) {
   li.appendChild(deleteIcon);
 
   return li;
+}
+
+function removeItem(e) {
+  const li = e.target.parentElement;
+  shoppingList.removeChild(li);
 }
