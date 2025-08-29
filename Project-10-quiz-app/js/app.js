@@ -6,7 +6,7 @@ const soruListesi = [
   ),
   new Soru(
     "2- Hangisi frontend kapsamında değerlendirilmez?",
-    { a: "css.js", b: "html", c: "javascript", d: "sql" },
+    { a: "css", b: "html", c: "javascript", d: "sql" },
     "d"
   ),
   new Soru(
@@ -22,10 +22,11 @@ const soruListesi = [
 ];
 
 const quiz = new Quiz(soruListesi);
+const ui = new UI();
 
 document.getElementById("btnSoruGetir").addEventListener("click", function () {
   if (quiz.sorular.length != quiz.soruIndex) {
-    console.log(quiz.soruGetir());
+    ui.soruGoster(quiz.soruGetir());
     quiz.soruIndex += 1;
     console.log(quiz);
   } else {
