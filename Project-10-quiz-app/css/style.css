@@ -47,3 +47,87 @@
   align-items: center;
   justify-content: space-between;
 }
+
+#quiz-box #header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* score box */
+#score-box {
+  text-align: center;
+  padding: 30px;
+}
+
+#score-box i {
+  font-size: 90px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+#score-box .score-text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#button-box {
+  text-align: center;
+}
+
+#button-box,
+#quiz-box,
+#score-box {
+  display: none;
+}
+
+#button-box.active,
+#quiz-box.active,
+#score-box.active {
+  display: block;
+}
+
+/* kalan süre */
+.time {
+  display: flex;
+  align-items: center;
+  background: #155724;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+.time .time-text {
+  font-size: 14px;
+}
+
+.time .time-second {
+  background: #ffd33d;
+  border-radius: 3px;
+  padding: 3px;
+  margin-left: 3px;
+  width: 25px;
+  text-align: center;
+}
+
+.btn-next {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.btn-next.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.time-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: #f0a500;
+}
