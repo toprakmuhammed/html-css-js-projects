@@ -17,4 +17,27 @@
   font-size: 16px;
   margin-bottom: 10px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option-list .option:hover {
+  color: #112b2c;
+  background-color: #ffd33d;
+}
+
+.option-list .option.correct {
+  color: #155724;
+  background: #d4edda;
+}
+
+.option-list .option.incorrect {
+  color: #721c24;
+  background: #f8d7da;
+}
+
+.option-list .option.disabled {
+  pointer-events: none;
 }
