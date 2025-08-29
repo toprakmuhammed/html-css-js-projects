@@ -41,3 +41,9 @@
 .option-list .option.disabled {
   pointer-events: none;
 }
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
