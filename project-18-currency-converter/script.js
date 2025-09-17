@@ -31,4 +31,25 @@ async function fetchCurrencies() {
   });
 }
 
-function convertCurrency() {}
+async function convertCurrency(e) {
+  e.preventDefault();
+
+  const amount = parseFloat(amountInput.value);
+  const fromCurrencyValue = fromCurrency.value;
+  const toCurrencyValue = toCurrency.value;
+
+  if (amount < 0) {
+    alert("Please ener a valid amount");
+    return;
+  }
+
+  const response = await fetch(
+    `https://api.exchangerate-api.com/v4/latest/${fromCurrencyValue}`
+  );
+  const data = await response.json();
+
+  const rate = data.rates[toCurrencyValue];
+  const convertedAmount = (amount * rate).toFixed(2);
+
+  resultDiv.textContent = `${amount} ${fromCurrencyValue} = ${convertedAmount} ${toCurrencyValue}`;
+}
