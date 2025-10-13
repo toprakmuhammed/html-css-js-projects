@@ -9,14 +9,52 @@
   <body>
     <header>
       <h1>Student Management System</h1>
-      <div>
+      <div class="actions">
         <button id="addLectureBtn">Add Lecture</button>
         <button id="addStudentBtn">Add Student</button>
       </div>
     </header>
 
-    <section>
+    <section id="dashboard">
       <h2>Lectures Summary</h2>
+
+      <table id="lectureTable">
+        <thead>
+          <tr>
+            <th>Lecture Name</th>
+            <th>Students</th>
+            <th>Avg. GPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Web Development</td>
+            <td>12</td>
+            <td>72.3</td>
+          </tr>
+          <tr>
+            <td>Database</td>
+            <td>12</td>
+            <td>72.3</td>
+          </tr>
+          <tr>
+            <td>Cyber Security</td>
+            <td>12</td>
+            <td>72.3</td>
+          </tr>
+          <tr>
+            <td>Machine Learning</td>
+            <td>12</td>
+            <td>72.3</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <nav class="links">
+        <button id="viewDetailsBtn">View Details</button>
+        <button id="statisticsBtn">Statistics</button>
+        <button id="searchBtn">Search</button>
+      </nav>
     </section>
 
     <script src="script.js"></script>
