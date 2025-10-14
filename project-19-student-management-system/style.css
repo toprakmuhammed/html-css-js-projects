@@ -1,15 +1,31 @@
-body {
-  font-family: monospace;
-  background-color: #0d1117;
-  color: #e6edf3;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  padding: 20px;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+:root {
+  --primary-color: #2b5876;
+  --secondary-color: #4e4376;
+  --weak-color: #fc8181;
+  --medium-color: #fbd38d;
+  --strong-color: #68d391;
 }
 
-main {
-  border: 1px solid #30363d;
-  padding: 20px;
-  width: 500px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  color: #333;
+  padding: 28px;
 }
