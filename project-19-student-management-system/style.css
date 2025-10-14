@@ -1,0 +1,15 @@
+body {
+  font-family: monospace;
+  background-color: #0d1117;
+  color: #e6edf3;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 20px;
+}
+
+main {
+  border: 1px solid #30363d;
+  padding: 20px;
+  width: 500px;
+}
