@@ -116,3 +116,27 @@ td {
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.07);
 }
+
+/* nav links */
+
+.links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.links button {
+  background-color: var(--bg-card);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+.links button:hover {
+  background-color: var(--accent-color);
+  color: #1a202c;
+}
