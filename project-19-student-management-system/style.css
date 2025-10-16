@@ -86,3 +86,33 @@ header h1 {
   margin-bottom: 20px;
   color: var(--text-light);
 }
+
+/* table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  font-weight: 600;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+td {
+  color: var(--text-light);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+}
