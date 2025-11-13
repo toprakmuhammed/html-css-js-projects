@@ -140,3 +140,16 @@ tbody tr:hover {
   background-color: var(--accent-color);
   color: #1a202c;
 }
+
+#studentDetailsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#studentDetailsTable th,
+#studentDetailsTable td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px;
+  color: var(--text-light);
+}

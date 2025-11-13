@@ -92,3 +92,120 @@ document.getElementById("addLectureBtn").addEventListener("click", addLecture);
 document.getElementById("addStudentBtn").addEventListener("click", addStudent);
 
 renderTable();
+
+// ========== Manage Students (View, Update, Delete) ==========
+
+const detailsSection = document.createElement("section");
+detailsSection.id = "studentDetails";
+detailsSection.style.display = "40px";
+document.body.appendChild(detailsSection);
+
+document
+  .getElementById("viewDetailsBtn")
+  .addEventListener("click", viewLectureDetails);
+
+function viewLectureDetails() {
+  const lectureNames = lectures.map((l, i) => `${i + 1}) ${l.name}`).join("\n");
+  const lectureIndex =
+    parseInt(prompt(`Select lecture to view details:\n${lectureNames}`)) - 1;
+
+  if (
+    isNaN(lectureIndex) ||
+    lectureIndex < 0 ||
+    lectureIndex >= lectures.length
+  ) {
+    alert("Invalid lecture selection.");
+    return;
+  }
+
+  const selectedLecture = lectures[lectureIndex];
+  renderStudentTable(selectedLecture);
+}
+
+function renderStudentTable(lecture) {
+  detailsSection.innerHTML = `
+  <h2>${lecture.name} - Students Details</h2>
+  <table id="studentDetailsTable" border="1" cellpadding="6 cellspacing="0">
+  thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Midterm</th>
+          <th>Final</th>
+          <th>Average</th>
+          <th>Letter</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table> `;
+
+  const tbody = detailsSection.querySelector("tbody");
+
+  ecture.students.forEach((student, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${student.id}</td>
+      <td>${student.name}</td>
+      <td>${student.surname}</td>
+      <td>${student.midterm}</td>
+      <td>${student.final}</td>
+      <td>${student.average.toFixed(1)}</td>
+      <td>${student.letter}</td>
+      <td>
+        <button class="updateBtn" data-index="${index}">Update</button>
+        <button class="deleteBtn" data-index="${index}">Delete</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  tbody.querySelectorAll(".updateBtn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = parseInt(btn.getAttribute("data-index"));
+      updateStudent(lecture, idx);
+    });
+  });
+
+  tbody.querySelectorAll(".deleteBtn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = parseInt(btn.getAttribute("data-index"));
+      deleteStudent(lecture, idx);
+    });
+  });
+}
+
+function updateStudent(lecture, index) {
+  const student = lecture.students[index];
+  const newMidterm = parseFloat(
+    prompt(`Enter new midterm for ${student.name}:`, student.midterm)
+  );
+  const newFinal = parseFloat(
+    prompt(`Enter new final for ${student.name}:`, student.final)
+  );
+
+  if (isNaN(newMidterm) || isNaN(newFinal)) {
+    alert("Invalid score input.");
+    return;
+  }
+
+  student.midterm = newMidterm;
+  student.final = newFinal;
+  student.average = 0.4 * newMidterm + 0.6 * newFinal;
+  student.letter = getLetterGrade(student.average);
+
+  renderStudentTable(lecture);
+  renderTable();
+}
+
+function deleteStudent(lecture, index) {
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this student?"
+  );
+  if (confirmDelete) {
+    lecture.students.splice(index, 1);
+    renderStudentTable(lecture);
+    renderTable();
+  }
+}
