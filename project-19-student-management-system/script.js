@@ -209,3 +209,69 @@ function deleteStudent(lecture, index) {
     renderTable();
   }
 }
+
+//==========Search Student Scores==========
+
+document
+  .getElementById("searchStudentBtn")
+  .addEventListener("click", searchStudentScores);
+function searchStudentScores() {
+  const query = prompt("Enter student name or surnameto search:");
+  if (!query) return;
+
+  let foundRecords = [];
+
+  lectures.forEach((lec) => {
+    lec.students.forEach((s) => {
+      const fullName = `${s.name} ${s.surname}`.toLowerCase();
+      if (fullName.includes(query.toLowerCase())) {
+        foundRecords.push({ lecture: lec.name, ...s });
+      }
+    });
+  });
+
+  if (foundRecords.length === 0) {
+    alert("No matching students found.");
+    detailsSection.innerHTML = `<h3>No results found for "${query}".</h3>`;
+    return;
+  }
+
+  const totalGPA =
+    foundRecords.reduce((acc, s) => acc + s.average, 0) / foundRecords.length;
+
+  detailsSection.innerHTML = `
+  <h2>Results for "${query}"</h2>
+    <table id="searchResultsTable" border="1" cellspacing="0" cellpadding="6">
+      <thead>
+        <tr>
+          <th>Lecture</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Midterm</th>
+          <th>Final</th>
+          <th>Average</th>
+          <th>Letter</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p><strong>Overall GPA:</strong> ${totalGPA.toFixed(2)}</p>
+  `;
+
+  const tbody = detailsSection.querySelector("tbody");
+  foundRecords.forEach((s) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${s.lecture}</td>
+      <td>${s.id}</td>
+      <td>${s.name}</td>
+      <td>${s.surname}</td>
+      <td>${s.midterm}</td>
+      <td>${s.final}</td>
+      <td>${s.average.toFixed(1)}</td>
+      <td>${s.letter}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
