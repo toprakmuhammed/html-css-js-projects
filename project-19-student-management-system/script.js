@@ -275,3 +275,106 @@ function searchStudentScores() {
     tbody.appendChild(row);
   });
 }
+
+//========== View Lecture Statistics & Filters ==========
+
+document
+  .getElementById("statisticsBtn")
+  .addEventListener("click", showLectureStatistics);
+
+function showLectureStatistics() {
+  if (lectures.length === 0) {
+    alert("No lectures found.");
+    return;
+  }
+
+  const lectureNames = lectures.map((l, i) => `${i + 1}) ${l.name}`).join("\n");
+  const lectureIndex =
+    parseInt(prompt(`Select a lecture to view statistics:\n${lectureNames}`)) -
+    1;
+
+  if (
+    isNaN(lectureIndex) ||
+    lectureIndex < 0 ||
+    lectureIndex >= lectures.length
+  ) {
+    alert("Invalid selection.");
+    return;
+  }
+
+  const lecture = lectures[lectureIndex];
+
+  const totalStudents = lecture.students.length;
+  if (totalStudents === 0) {
+    detailsSection.innerHTML = `<h2>${lecture.name}</h2><p>No students found in this lecture.</p>`;
+    return;
+  }
+
+  const passed = lecture.students.filter((s) => s.average >= 60);
+  const failed = lecture.students.filter((s) => s.average < 60);
+  const mean = (
+    lecture.students.reduce((acc, s) => acc + s.average, 0) / totalStudents
+  ).toFixed(1);
+
+  detailsSection.innerHTML = `
+    <h2>${lecture.name} - Statistics</h2>
+    <p>Total Students: <strong>${totalStudents}</strong></p>
+    <p>Passed: <strong>${passed.length}</strong></p>
+    <p>Failed: <strong>${failed.length}</strong></p>
+    <p>Class Mean Score: <strong>${mean}</strong></p>
+
+    <div class="filter-buttons">
+      <button id="showAll">Show All Students</button>
+      <button id="showPassed">Show Passed Only</button>
+      <button id="showFailed">Show Failed Only</button>
+    </div>
+
+    <table id="lectureStatsTable" border="1" cellspacing="0" cellpadding="6">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Midterm</th>
+          <th>Final</th>
+          <th>Average</th>
+          <th>Letter</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  `;
+
+  const tbody = detailsSection.querySelector("tbody");
+
+  function renderFiltered(list) {
+    tbody.innerHTML = "";
+    list.forEach((s) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${s.id}</td>
+        <td>${s.name}</td>
+        <td>${s.surname}</td>
+        <td>${s.midterm}</td>
+        <td>${s.final}</td>
+        <td>${s.average.toFixed(1)}</td>
+        <td>${s.letter}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  // As a default, show all students
+  renderFiltered(lecture.students);
+
+  // Bind filter buttons
+  document.getElementById("showAll").addEventListener("click", () => {
+    renderFiltered(lecture.students);
+  });
+  document.getElementById("showPassed").addEventListener("click", () => {
+    renderFiltered(passed);
+  });
+  document.getElementById("showFailed").addEventListener("click", () => {
+    renderFiltered(failed);
+  });
+}
