@@ -13,8 +13,9 @@ function renderTable() {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${lec.name}</td>
-      <td>${lec.students}</td>
-      <td>${lec.gpa}</td>
+      <td>${lec.students.length}</td>
+      <td>${lec.gpa ? lec.gpa : "-"}</td>
+
     `;
     tbody.appendChild(row);
   });
@@ -125,8 +126,9 @@ function viewLectureDetails() {
 function renderStudentTable(lecture) {
   detailsSection.innerHTML = `
   <h2>${lecture.name} - Students Details</h2>
-  <table id="studentDetailsTable" border="1" cellpadding="6 cellspacing="0">
-  thead>
+  <table id="studentDetailsTable" border="1" cellpadding="6" cellspacing="0">
+  <thead>
+
         <tr>
           <th>ID</th>
           <th>Name</th>
@@ -143,7 +145,7 @@ function renderStudentTable(lecture) {
 
   const tbody = detailsSection.querySelector("tbody");
 
-  ecture.students.forEach((student, index) => {
+  lecture.students.forEach((student, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${student.id}</td>
@@ -213,7 +215,7 @@ function deleteStudent(lecture, index) {
 //==========Search Student Scores==========
 
 document
-  .getElementById("searchStudentBtn")
+  .getElementById("searchBtn")
   .addEventListener("click", searchStudentScores);
 function searchStudentScores() {
   const query = prompt("Enter student name or surnameto search:");
